@@ -29,7 +29,7 @@ class PostcodeAnywhere_CustomerProfiling_InteractiveTest
     public function testConstructor()
     {
         $caught = false;
-
+        
         try {
             $foo = new PostcodeAnywhere_CustomerProfiling_Interactive(null);
         } catch (PostcodeAnywhere_CustomerProfiling_Interactive_Exception $e) {
