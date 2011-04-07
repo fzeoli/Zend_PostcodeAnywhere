@@ -17,7 +17,7 @@
 /**
  * Model class for the data returned by the interactive API.
  */
-class PostcodeAnywhere_CustomerProfiling_ACORN
+class Lookup_PostcodeAnywhere_CustomerProfiling_ACORN
 {
 
     /**
@@ -36,7 +36,7 @@ class PostcodeAnywhere_CustomerProfiling_ACORN
      * Creates a new ACORN model.
      *
      * @param array $data The model data.
-     * @throws PostcodeAnywhere_CustomerProfiling_Exception
+     * @throws Lookup_PostcodeAnywhere_CustomerProfiling_Exception
      */
     public function __construct(array $data)
     {
@@ -45,7 +45,7 @@ class PostcodeAnywhere_CustomerProfiling_ACORN
 
         foreach ($keys as $key) {
             if (!array_key_exists($key, $data)) {
-                throw new PostcodeAnywhere_CustomerProfiling_Interactive_Exception(
+                throw new Lookup_PostcodeAnywhere_CustomerProfiling_Interactive_Exception(
                     $key . ' is missing from the data array!'
                 );
             }

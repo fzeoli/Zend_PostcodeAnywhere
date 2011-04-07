@@ -14,7 +14,7 @@
  *
  */
 
-class PostcodeAnywhere_CustomerProfiling_InteractiveTest
+class Lookup_PostcodeAnywhere_CustomerProfiling_InteractiveTest
     extends PHPUnit_Framework_TestCase
 {
     const TEST_RESPONSE = '[{"AcornType":"7","AcornTypeName":"Old people, detached homes","AcornGroup":"B","AcornGroupName":"Affluent Greys","AcornCategory":"1","AcornCategoryName":"Wealthy Achievers"}]';
@@ -31,8 +31,8 @@ class PostcodeAnywhere_CustomerProfiling_InteractiveTest
         $caught = false;
         
         try {
-            $foo = new PostcodeAnywhere_CustomerProfiling_Interactive(null);
-        } catch (PostcodeAnywhere_CustomerProfiling_Interactive_Exception $e) {
+            $foo = new Lookup_PostcodeAnywhere_CustomerProfiling_Interactive(null);
+        } catch (Lookup_PostcodeAnywhere_CustomerProfiling_Interactive_Exception $e) {
             $this->assertEquals(
                 $e->getMessage(),
                 'The API key can\'t be empty'
@@ -65,7 +65,7 @@ class PostcodeAnywhere_CustomerProfiling_InteractiveTest
             )
         );
 
-        $api = new PostcodeAnywhere_CustomerProfiling_Interactive($key, $client);
+        $api = new Lookup_PostcodeAnywhere_CustomerProfiling_Interactive($key, $client);
         $ret = $api->retrieveByPostcode('FOOBAR');
 
         $uri = 'http://services.postcodeanywhere.co.uk:80/CustomerProfiling/Interactive'
@@ -73,7 +73,7 @@ class PostcodeAnywhere_CustomerProfiling_InteractiveTest
 
     	$this->assertEquals($uri, $client->getUri()->getUri());
 
-    	$this->assertTrue($ret instanceof PostcodeAnywhere_CustomerProfiling_ACORN);
+    	$this->assertTrue($ret instanceof Lookup_PostcodeAnywhere_CustomerProfiling_ACORN);
 
     	$this->assertEquals($ret->getType(), 7);
         $this->assertEquals($ret->getTypeName(), 'Old people, detached homes');
@@ -89,7 +89,7 @@ class PostcodeAnywhere_CustomerProfiling_InteractiveTest
 
         try {
             $api->retrieveByPostcode('FOOBAR');
-        } catch (PostcodeAnywhere_CustomerProfiling_Interactive_Exception $e) {
+        } catch (Lookup_PostcodeAnywhere_CustomerProfiling_Interactive_Exception $e) {
 
             $this->assertEquals('1 - test - test - test', $e->getMessage());
 

@@ -17,7 +17,7 @@
 /**
  * Custom exception for the API library.
  */
-class PostcodeAnywhere_CustomerProfiling_Interactive_Exception extends
+class Lookup_PostcodeAnywhere_CustomerProfiling_Interactive_Exception extends
     Zend_Exception
 {
 
