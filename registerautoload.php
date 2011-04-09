@@ -1,7 +1,7 @@
 <?php
 /**
  *	This is used in the Testing and Validation phase of the mvn test
- */	
+**/	
 
 define('APPLICATION_PATH', 		realpath(dirname(__FILE__)).'/src/main/php/Lookup/PostcodeAnywhere');
 define('TEST_PATH',				realpath(dirname(__FILE__)).'/src/test/php/Lookup/PostcodeAnywhere/');

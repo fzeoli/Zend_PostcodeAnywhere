@@ -12,12 +12,12 @@
  * obtain it through the world-wide-web, please send an email
  * to hello@canddi.com so we can send you a copy immediately.
  *
- */
+**/
 
 /**
  * Custom exception for the API library.
- */
-class Lookup_PostcodeAnywhere_CustomerProfiling_Interactive_Exception extends
+**/
+class Lookup_PostcodeAnywhere_CustomerProfiling_Exception_Interactive extends
     Zend_Exception
 {
 

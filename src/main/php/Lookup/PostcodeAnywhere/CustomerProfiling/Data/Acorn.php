@@ -12,17 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to hello@canddi.com so we can send you a copy immediately.
  *
- */
+**/
 
 /**
  * Model class for the data returned by the interactive API.
- */
-class Lookup_PostcodeAnywhere_CustomerProfiling_ACORN
+**/
+class Lookup_PostcodeAnywhere_CustomerProfiling_Data_Acorn
 {
 
     /**
      * Data array keys.
-     */
+    **/
     const TYPE = 'AcornType';
     const TYPE_NAME = 'AcornTypeName';
     const GROUP = 'AcornGroup';
@@ -37,7 +37,7 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_ACORN
      *
      * @param array $data The model data.
      * @throws Lookup_PostcodeAnywhere_CustomerProfiling_Exception
-     */
+    **/
     public function __construct(array $data)
     {
         $keys = array(self::TYPE, self::TYPE_NAME, self::GROUP,
@@ -45,7 +45,7 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_ACORN
 
         foreach ($keys as $key) {
             if (!array_key_exists($key, $data)) {
-                throw new Lookup_PostcodeAnywhere_CustomerProfiling_Interactive_Exception(
+                throw new Lookup_PostcodeAnywhere_CustomerProfiling_Exception_Interactive(
                     $key . ' is missing from the data array!'
                 );
             }
@@ -58,7 +58,7 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_ACORN
      * Retrieves the ACORN record's type.
      *
      * @return string
-     */
+    **/
     public function getType()
     {
         return $this->_data[self::TYPE];
@@ -68,7 +68,7 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_ACORN
      * Retrieves the ACORN record's type name.
      *
      * @return string
-     */
+    **/
     public function getTypeName()
     {
         return $this->_data[self::TYPE_NAME];
@@ -78,7 +78,7 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_ACORN
      * Retrieves the ACORN record's group.
      *
      * @return string
-     */
+    **/
     public function getGroup()
     {
         return $this->_data[self::GROUP];
@@ -88,7 +88,7 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_ACORN
      * Retrieves the ACORN record's group name.
      *
      * @return string
-     */
+    **/
     public function getGroupName()
     {
         return $this->_data[self::GROUP_NAME];
@@ -98,7 +98,7 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_ACORN
      * Retrieves the ACORN record's category.
      *
      * @return string
-     */
+    **/
     public function getCategory()
     {
         return $this->_data[self::CATEGORY];
@@ -108,7 +108,7 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_ACORN
      * Retrieves the ACORN record's category name.
      *
      * @return string
-     */
+    **/
     public function getCategoryName()
     {
         return $this->_data[self::CATEGORY_NAME];
