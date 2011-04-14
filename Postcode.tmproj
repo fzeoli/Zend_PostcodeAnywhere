@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>registerautoload.php</string>
+	<string>pom.xml</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,119 +21,151 @@
 	<integer>316</integer>
 	<key>metaData</key>
 	<dict>
-		<key>LICENSE.txt</key>
+		<key>pom.xml</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>27</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>36</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>7</integer>
 		</dict>
-		<key>NOTES_NOT_IN_GIT.txt</key>
+		<key>src/main/php/Lookup/PostcodeAnywhere/CustomerProfiling/Data/Demographic.php</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>1</integer>
+				<integer>30</integer>
 				<key>line</key>
-				<integer>4</integer>
+				<integer>14</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>4</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>76</integer>
+				<integer>29</integer>
 				<key>line</key>
-				<integer>4</integer>
+				<integer>14</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>1</integer>
+				<integer>32</integer>
 				<key>line</key>
-				<integer>4</integer>
+				<integer>14</integer>
 			</dict>
 		</dict>
-		<key>environments.php</key>
+		<key>src/main/php/Lookup/PostcodeAnywhere/CustomerProfiling/Data/Lifestyle.php</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>5</integer>
+				<integer>28</integer>
 				<key>line</key>
+				<integer>76</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>70</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>20</integer>
+				<key>line</key>
+				<integer>76</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>32</integer>
+				<key>line</key>
+				<integer>76</integer>
+			</dict>
+		</dict>
+		<key>src/main/php/Lookup/PostcodeAnywhere/CustomerProfiling/Data/ListItem.php</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>31</integer>
+				<key>line</key>
+				<integer>33</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>4</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>20</integer>
+				<key>line</key>
+				<integer>33</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>35</integer>
+				<key>line</key>
+				<integer>33</integer>
+			</dict>
+		</dict>
+		<key>src/main/php/Lookup/PostcodeAnywhere/CustomerProfiling/Interactive.php</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
 				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>pom.xml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>13</integer>
 				<key>line</key>
-				<integer>10</integer>
+				<integer>136</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>8</integer>
+			<integer>110</integer>
 		</dict>
-		<key>registerautoload.php</key>
+		<key>src/test/php/Lookup/PostcodeAnywhere/CustomerProfiling/InteractiveTest.php</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>73</integer>
 				<key>line</key>
-				<integer>6</integer>
+				<integer>162</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>src/main/php/Lookup/PostcodeAnywhere/CustomerProfiling/ACORN.php</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>52</integer>
-				<key>line</key>
-				<integer>6</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>102</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>registerautoload.php</string>
+		<string>src/main/php/Lookup/PostcodeAnywhere/CustomerProfiling/Interactive.php</string>
+		<string>src/test/php/Lookup/PostcodeAnywhere/CustomerProfiling/InteractiveTest.php</string>
 		<string>pom.xml</string>
-		<string>src/main/php/Lookup/PostcodeAnywhere/CustomerProfiling/ACORN.php</string>
-		<string>LICENSE.txt</string>
-		<string>NOTES_NOT_IN_GIT.txt</string>
-		<string>environments.php</string>
+		<string>src/main/php/Lookup/PostcodeAnywhere/CustomerProfiling/Data/ListItem.php</string>
+		<string>src/main/php/Lookup/PostcodeAnywhere/CustomerProfiling/Data/Demographic.php</string>
+		<string>src/main/php/Lookup/PostcodeAnywhere/CustomerProfiling/Data/Lifestyle.php</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{358, 236}, {1044, 660}}</string>
+	<string>{{1134, 147}, {1044, 660}}</string>
 </dict>
 </plist>

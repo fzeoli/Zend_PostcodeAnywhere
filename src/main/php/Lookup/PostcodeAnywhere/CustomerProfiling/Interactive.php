@@ -19,6 +19,7 @@
  * interactive API.
 **/
 class Lookup_PostcodeAnywhere_CustomerProfiling_Interactive
+    implements Lookup_PostcodeAnywhere_CustomerProfiling_Interface
 {
 
     private $_apiKey;
