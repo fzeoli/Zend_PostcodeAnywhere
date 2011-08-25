@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>pom.xml</string>
+	<string>src/test/php/Lookup/PostcodeAnywhere/CustomerProfiling/InteractiveTest.php</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -144,14 +144,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>73</integer>
+				<integer>40</integer>
 				<key>line</key>
-				<integer>162</integer>
+				<integer>140</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>102</integer>
+			<integer>134</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
