@@ -62,9 +62,12 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_Data_Lifestyle
         foreach($data AS $arrItem):
             $this->_data[$arrItem["Indicator"]][] = 
                 new Lookup_PostcodeAnywhere_CustomerProfiling_Data_ListItem(
-                     $arrItem[Lookup_PostcodeAnywhere_CustomerProfiling_Data_ListItem::SEGMENTATION]
-                    ,$arrItem[Lookup_PostcodeAnywhere_CustomerProfiling_Data_ListItem::UKPOPULATION]
-                    ,$arrItem[Lookup_PostcodeAnywhere_CustomerProfiling_Data_ListItem::VARIATION]);
+                     isset($arrItem[Lookup_PostcodeAnywhere_CustomerProfiling_Data_ListItem::SEGMENTATION])?
+                           $arrItem[Lookup_PostcodeAnywhere_CustomerProfiling_Data_ListItem::SEGMENTATION]:null
+                    ,isset($arrItem[Lookup_PostcodeAnywhere_CustomerProfiling_Data_ListItem::UKPOPULATION])?
+                           $arrItem[Lookup_PostcodeAnywhere_CustomerProfiling_Data_ListItem::UKPOPULATION]:null
+                    ,isset($arrItem[Lookup_PostcodeAnywhere_CustomerProfiling_Data_ListItem::VARIATION])?
+                           $arrItem[Lookup_PostcodeAnywhere_CustomerProfiling_Data_ListItem::VARIATION]:null);
         endforeach;
     }
     

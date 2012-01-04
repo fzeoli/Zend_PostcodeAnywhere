@@ -154,6 +154,8 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_Interactive
      * @see http://www.postcodeanywhere.co.uk/support/webservices/CustomerProfiling/Interactive/RetrieveByPostcode/v1/default.aspx
      *
      * @return Lookup_PostcodeAnywhere_CustomerProfiling_ACORN The ACORN record.
+     * @throws Zend_Json_Exception (decoding error)
+     * @throws Lookup_PostcodeAnywhere_CustomerProfiling_Exception_Interactive (any returned error)
     **/
     public function retrieveByPostcode($postcode)
     {
@@ -168,6 +170,9 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_Interactive
         $this->_client->setUri($url);
 
         $data = Zend_Json::decode($this->_client->request()->getBody());
+
+        if(!isset($data[0]))
+          throw new Lookup_PostcodeAnywhere_CustomerProfiling_Exception_Interactive('Data is malformed: ('.print_r($data,true).')');
         
         $data = $data[0];
 
