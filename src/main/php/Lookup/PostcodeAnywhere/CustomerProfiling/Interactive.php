@@ -168,6 +168,7 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_Interactive
         $this->_client->setUri($url);
 
         $data = Zend_Json::decode($this->_client->request()->getBody());
+        
         $data = $data[0];
 
         if (isset($data[self::ERROR])) {

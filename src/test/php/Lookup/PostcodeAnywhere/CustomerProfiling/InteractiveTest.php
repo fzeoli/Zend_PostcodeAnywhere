@@ -19,8 +19,8 @@ class Lookup_PostcodeAnywhere_CustomerProfiling_InteractiveTest
 {
     const TEST_BY_POSTCODE_RESPONSE = '[{"AcornType":"7","AcornTypeName":"Old people, detached homes","AcornGroup":"B","AcornGroupName":"Affluent Greys","AcornCategory":"1","AcornCategoryName":"Wealthy Achievers"}]';
     const TEST_DEMOGRAPHIC_RESPONSE = '[{"Indicator":"Age","Segmentation":"Under 5","UKPopulation":"10","Variation":"-5"}]';
-    const TEST_LIFESTYLE_RESPONSE = '[{"Indicator":"Prefered charities","Segmentation":"Animal welfare","Variation":"-5"},
-    {"Indicator":"Prefered charities","Segmentation":"Children","Variation":"28"}]';
+    const TEST_LIFESTYLE_RESPONSE = '[{"Indicator":"Prefered charities","Segmentation":"Animal welfare","UKPopulation":"10","Variation":"-5"},
+    {"Indicator":"Prefered charities","Segmentation":"Children","UKPopulation":"10","Variation":"28"}]';
     const TEST_ERROR_RESPONSE = '[{"Error": "1", "Description":"test","Cause":"test","Resolution":"test"}]';
 
     /**

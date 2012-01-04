@@ -1,0 +1,20 @@
+<project name="Lookup" default="compile">
+  <description>
+    Create Postcode Lookup classmap.
+  </description>
+  
+  <target name="setPaths">
+    <property name="path.inputRaw" value="." />
+    <property name="path.classMapGen" value="../../site/resources/classmap_generator.php" />
+    <property name="path.outputRaw" value="." />
+  </target>
+  
+  <target name="compile" depends="setPaths">
+    <echo level="info" message="Creating project classmaps." />
+    <touch file="${path.outputRaw}/Lookup/.classmap.php"/>
+    <exec executable="php">
+      <arg line="${path.classMapGen} -w -l '${path.inputRaw}/Lookup/PostcodeAnywhere' -o '${path.outputRaw}/Lookup/PostcodeAnywhere/.classmap.php'" />
+    </exec>
+  </target>
+
+</project>
