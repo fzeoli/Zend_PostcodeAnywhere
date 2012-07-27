@@ -34,9 +34,11 @@ class PostcodeAnywhere_Address_AddressLookup
     private $_client;
    
     // @TODO option for http and https
-    const BASE_URL = 'https://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/';
+    const BASE_URL = 'http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/';
     
     const POSTCODE_URL = 'FindByPostcode/v1.00/json3.ws?';
+    
+    const RETRIEVE_BY_ID_URL = 'RetrieveById/v1.20/wsdlnew.ws?';
 
     private $_accountCode = null;
     private $_licenceCode = null;
@@ -44,10 +46,14 @@ class PostcodeAnywhere_Address_AddressLookup
     private $_postcodeData = array(
           "URL" => "FindByPostcode/v1.00/json3.ws?",
           "TYPE" => "&Postcode=");
+
+    private $_IdData = array(
+          "URL" => "RetrieveById/v1.20/json3.ws?",
+          "TYPE" => "&Id=");
           
 
     function __construct(array $config) {
-       $this->_accountCode = $config['accountCode'];
+           $this->_accountCode = $config['accountCode'];
 	   $this->_licenceCode = $config['licenceCode'];
 
 	   if ($this->_accountCode == null) {
@@ -64,7 +70,7 @@ class PostcodeAnywhere_Address_AddressLookup
 
 	   $this->_postCode = $postcode;
 	   
-       $url = $this->prepareUrl($this->_postcodeData, $postcode);
+       	   $url = $this->prepareUrl($this->_postcodeData, $postcode);
 
 	   $addresses = $this->sendRequest($url);
 	       
@@ -77,17 +83,32 @@ class PostcodeAnywhere_Address_AddressLookup
 	       $returnAddresses[] = $address;
 	    }	
         return $returnAddresses;
-	}
+     }
 
+
+    public function getAddressById($addressId){
+	   
+           $url = $this->prepareUrl($this->_IdData, $addressId);
+
+	   $addresses = $this->sendRequest($url);
+	       
+	   if (false == $addresses) {
+	      return false;
+	   }
+	   // There will be only one result as this is an primary key lookup.
+	   $addresses[0]->setAddressId($addressId);
+        return $addresses[0];
+     }
 
 
 	function prepareUrl($actionType, $actionValue) {
 		$postUrl = self::BASE_URL;  
-        $postUrl .= $actionType['URL'];
-        $postUrl .= "Key=" . urlencode($this->_licenceCode);
-        $postUrl .= $actionType['TYPE'] . urlencode($actionValue);
+        	$postUrl .= $actionType['URL'];
+        	$postUrl .= "Key=" . urlencode($this->_licenceCode);
+        	$postUrl .= $actionType['TYPE'] . urlencode($actionValue);
 		return $postUrl;
 	}
+
 	
 	function sendRequest($url, Zend_Http_Client $client = null) {
 	    
@@ -97,19 +118,18 @@ class PostcodeAnywhere_Address_AddressLookup
 		}
 		$this->_client->setUri($url);
 
-        try {
+       		try {
 		    $body = $this->_client->request()->getBody();
 		} catch (Exception $e) {
 		    throw new PostcodeAnywhere_Address_AddressLookup_Exception 
 		    ($e->getMessage());
 		}
-		
+
 		$addresses = Zend_Json::decode($body);
 		
 		$addressArr = array();
 		$addresses = $addresses['Items'];
 		foreach ($addresses as $address) {
-		       $address['Postcode'] = 
 		       $newAddressClass = new PostcodeAnywhere_Address_Address($address);
 		       $addressArr[] = $newAddressClass;
 		}
