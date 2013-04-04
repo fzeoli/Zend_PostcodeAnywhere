@@ -24,15 +24,15 @@
  *
  * Usage:
  * --help|-h                    Get usage message
- * --library|-l [ <string> ]    Library to parse; if none provided, assumes 
+ * --library|-l [ <string> ]    Library to parse; if none provided, assumes
  *                              current directory
- * --output|-o [ <string> ]     Where to write autoload file; if not provided, 
+ * --output|-o [ <string> ]     Where to write autoload file; if not provided,
  *                              assumes ".classmap.php" in library directory
- * --overwrite|-w               Whether or not to overwrite existing autoload 
+ * --overwrite|-w               Whether or not to overwrite existing autoload
  *                              file
  */
 
-$libPath = array(dirname(__FILE__) . '/../../../target/phpinc/');
+$libPath = array(dirname(__FILE__) . '/../../../target/php-deps/');
 set_include_path(implode(PATH_SEPARATOR, $libPath));
 
 require_once('ZendX/Loader/StandardAutoloader.php');
@@ -92,7 +92,7 @@ if (isset($opts->o)) {
     } elseif (file_exists($output)) {
         if (!$opts->getOption('w')) {
             echo "Autoload file already exists at '$output'," . PHP_EOL
-                . "but 'overwrite' flag was not specified; aborting." . PHP_EOL 
+                . "but 'overwrite' flag was not specified; aborting." . PHP_EOL
                 . PHP_EOL
                 . $opts->getUsageMessage();
             exit(2);
@@ -109,7 +109,7 @@ if (!$usingStdout) {
 // Get the ClassFileLocator, and pass it the library path
 $l = new ZendX_File_ClassFileLocator($path);
 
-// Iterate over each element in the path, and create a map of 
+// Iterate over each element in the path, and create a map of
 // classname => filename, where the filename is relative to the library path
 $map    = new stdClass;
 $strip .= DIRECTORY_SEPARATOR;

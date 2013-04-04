@@ -18,7 +18,7 @@
  * Library class to interact with PostcodeAnywhere's customer profiling
  * interactive API.
  */
-class PostcodeAnywhere_CustomerProfiling_Interactive
+class Lookup_PostcodeAnywhere_CustomerProfiling_Interactive
 {
 
     private $_apiKey;
@@ -55,7 +55,7 @@ class PostcodeAnywhere_CustomerProfiling_Interactive
     public function __construct($apiKey, Zend_Http_Client $client = null)
     {
         if (empty($apiKey)) {
-            throw new PostcodeAnywhere_CustomerProfiling_Interactive_Exception(
+            throw new Lookup_PostcodeAnywhere_CustomerProfiling_Interactive_Exception(
             	'The API key can\'t be empty'
             );
         }
@@ -72,7 +72,7 @@ class PostcodeAnywhere_CustomerProfiling_Interactive
      * @param string $postcode The postcode.
      * @see http://www.postcodeanywhere.co.uk/support/webservices/CustomerProfiling/Interactive/RetrieveByPostcode/v1/default.aspx
      *
-     * @return PostcodeAnywhere_CustomerProfiling_ACORN The ACORN record.
+     * @return Lookup_PostcodeAnywhere_CustomerProfiling_ACORN The ACORN record.
      */
     public function retrieveByPostcode($postcode)
     {
@@ -93,12 +93,12 @@ class PostcodeAnywhere_CustomerProfiling_Interactive
             $msg = $data[self::ERROR] . ' - ' . $data[self::DESCRIPTION]
                 . ' - ' . $data[self::CAUSE] . ' - ' . $data[self::RESOLUTION];
 
-            throw new PostcodeAnywhere_CustomerProfiling_Interactive_Exception(
+            throw new Lookup_PostcodeAnywhere_CustomerProfiling_Interactive_Exception(
                 $msg
             );
         }
 
-        return new PostcodeAnywhere_CustomerProfiling_ACORN($data);
+        return new Lookup_PostcodeAnywhere_CustomerProfiling_ACORN($data);
     }
 
     /**

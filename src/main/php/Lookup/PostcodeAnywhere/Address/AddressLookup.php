@@ -18,12 +18,12 @@
  * Library class to interact with PostcodeAnywhere's customer profiling
  * interactive API.
  */
- 
+
  /*
- * TODO: Add more methods. Currently FindByPostcode is the only search method 
+ * TODO: Add more methods. Currently FindByPostcode is the only search method
  * implemented.
  */
-class PostcodeAnywhere_Address_AddressLookup
+class Lookup_PostcodeAnywhere_Address_AddressLookup
 {
 
     private $_apiKey;
@@ -32,17 +32,17 @@ class PostcodeAnywhere_Address_AddressLookup
      * @var Zend_Http_Client
      */
     private $_client;
-   
+
     // @TODO option for http and https
     const BASE_URL = 'http://services.postcodeanywhere.co.uk/PostcodeAnywhere/Interactive/';
-    
+
     const POSTCODE_URL = 'FindByPostcode/v1.00/json3.ws?';
-    
+
     const RETRIEVE_BY_ID_URL = 'RetrieveById/v1.20/wsdlnew.ws?';
 
     private $_accountCode = null;
     private $_licenceCode = null;
-     
+
     private $_postcodeData = array(
           "URL" => "FindByPostcode/v1.00/json3.ws?",
           "TYPE" => "&Postcode=");
@@ -50,7 +50,7 @@ class PostcodeAnywhere_Address_AddressLookup
     private $_IdData = array(
           "URL" => "RetrieveById/v1.20/json3.ws?",
           "TYPE" => "&Id=");
-          
+
 
     function __construct(array $config) {
            $this->_accountCode = $config['accountCode'];
@@ -58,22 +58,22 @@ class PostcodeAnywhere_Address_AddressLookup
 
 	   if ($this->_accountCode == null) {
            //throw missing data error
-	       throw new PostcodeAnywhere_Address_AddressLookup_Exception ("Missing Data: Account Code");
+	       throw new Lookup_PostcodeAnywhere_Address_AddressLookup_Exception ("Missing Data: Account Code");
 	   }
 	   if ($this->_licenceCode == null) {
 	       //throw missing data error
-	       throw new PostcodeAnywhere_Address_AddressLookup_Exception ("Missing Data: Licence Code");
+	       throw new Lookup_PostcodeAnywhere_Address_AddressLookup_Exception ("Missing Data: Licence Code");
 	   }
     }
 
     public function getAddressByPostcode($postcode){
 
 	   $this->_postCode = $postcode;
-	   
+
        	   $url = $this->prepareUrl($this->_postcodeData, $postcode);
 
 	   $addresses = $this->sendRequest($url);
-	       
+
 	   if (false == $addresses) {
 	      return false;
 	   }
@@ -81,17 +81,17 @@ class PostcodeAnywhere_Address_AddressLookup
 	   foreach ($addresses as $address) {
 	       $address->setPostcode($postcode);
 	       $returnAddresses[] = $address;
-	    }	
+	    }
         return $returnAddresses;
      }
 
 
     public function getAddressById($addressId){
-	   
+
            $url = $this->prepareUrl($this->_IdData, $addressId);
 
 	   $addresses = $this->sendRequest($url);
-	       
+
 	   if (false == $addresses) {
 	      return false;
 	   }
@@ -102,17 +102,17 @@ class PostcodeAnywhere_Address_AddressLookup
 
 
 	function prepareUrl($actionType, $actionValue) {
-		$postUrl = self::BASE_URL;  
+		$postUrl = self::BASE_URL;
         	$postUrl .= $actionType['URL'];
         	$postUrl .= "Key=" . urlencode($this->_licenceCode);
         	$postUrl .= $actionType['TYPE'] . urlencode($actionValue);
 		return $postUrl;
 	}
 
-	
+
 	function sendRequest($url, Zend_Http_Client $client = null) {
-	    
-	    $this->_client = $client; 
+
+	    $this->_client = $client;
 	    if ($client == null) {
 		  $this->_client = new Zend_Http_Client();
 		}
@@ -121,16 +121,16 @@ class PostcodeAnywhere_Address_AddressLookup
        		try {
 		    $body = $this->_client->request()->getBody();
 		} catch (Exception $e) {
-		    throw new PostcodeAnywhere_Address_AddressLookup_Exception 
+		    throw new Lookup_PostcodeAnywhere_Address_AddressLookup_Exception
 		    ($e->getMessage());
 		}
 
 		$addresses = Zend_Json::decode($body);
-		
+
 		$addressArr = array();
 		$addresses = $addresses['Items'];
 		foreach ($addresses as $address) {
-		       $newAddressClass = new PostcodeAnywhere_Address_Address($address);
+		       $newAddressClass = new Lookup_PostcodeAnywhere_Address_Address($address);
 		       $addressArr[] = $newAddressClass;
 		}
 

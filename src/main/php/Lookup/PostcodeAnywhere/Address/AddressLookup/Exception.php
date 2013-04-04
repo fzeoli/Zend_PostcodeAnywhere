@@ -17,7 +17,7 @@
 /**
  * Custom exception for the API library.
  */
-class PostcodeAnywhere_Address_AddressLookup_Exception extends
+class Lookup_PostcodeAnywhere_Address_AddressLookup_Exception extends
     Zend_Exception
 {
 

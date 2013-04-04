@@ -1,7 +1,7 @@
 <?php
 /**
  *	This is used in the Testing and Validation phase of the mvn test
-**/	
+**/
 
 define('APPLICATION_PATH', 		realpath(dirname(__FILE__)).'/src/main/php/Lookup/PostcodeAnywhere');
 define('TEST_PATH',				realpath(dirname(__FILE__)).'/src/test/php/Lookup/PostcodeAnywhere/');
@@ -19,6 +19,6 @@ require_once "Zend/Loader/Autoloader.php";
 $autoloader = Zend_Loader_Autoloader::getInstance();
 $autoloader->registerNamespace('PHPUnit_');
 $autoloader->registerNamespace('Zend_');
-$autoloader->registerNamespace('Lookup_PostcodeAnywhere_');
+$autoloader->registerNamespace('Lookup_Lookup_PostcodeAnywhere_');
 
 

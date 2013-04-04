@@ -4,20 +4,20 @@
  * Library class to interact with PostcodeAnywhere's address lookup results
  * interactive API.
  */
-class PostcodeAnywhere_Address_Address
+class Lookup_PostcodeAnywhere_Address_Address
 {
-    
+
     const ID = 'id';
     const PLACE = 'place';
     const STREET = 'streetAddress';
-    const POSTCODE = 'postcode';       
-    const LINE1 = 'line1';  
-    const LINE2 = 'line2';  
-    const LINE3 = 'line3';  
-    const LINE4 = 'line4';  
-    const LINE5 = 'line5';  
-    const POSTTOWN = 'town';  
-    const COUNTY = 'county';  
+    const POSTCODE = 'postcode';
+    const LINE1 = 'line1';
+    const LINE2 = 'line2';
+    const LINE3 = 'line3';
+    const LINE4 = 'line4';
+    const LINE5 = 'line5';
+    const POSTTOWN = 'town';
+    const COUNTY = 'county';
 
     private $_addressFields = array(
         self::ID => null,
@@ -33,18 +33,18 @@ class PostcodeAnywhere_Address_Address
         self::COUNTY => null
     );
 
-	
+
     function __construct(array $address) {
 	   if (!empty($address)) {
  	       $this->setAddressFromArray($address);
 	   }
-	   		
+
     }
-     
-    /** 
+
+    /**
     * Set the address details from array.
-    * 
-    * 
+    *
+    *
     * @author Mark Hodgson
     **/
     public function setAddressFromArray(array $address) {
@@ -79,25 +79,25 @@ class PostcodeAnywhere_Address_Address
            if(!empty($address['County'])) {
 		$this->_addressFields[self::COUNTY] = $address['County'];
 	   }
-	   	   
+
     }
-    
-    /** 
+
+    /**
     * Get the full address line
-    * 
+    *
     * @return string address line
     * @author Mark Hodgson
     **/
     public function getAddressLine() {
-        
+
         return $this->_addressFields[self::STREET]
         .", ". $this->_addressFields[self::PLACE]
         .", ". $this->_addressFields[self::POSTCODE];
     }
 
-    /** 
+    /**
     * Get the postcode anywhere address Id
-    * 
+    *
     * @return string Id
     * @author Mark Hodgson
     **/
@@ -105,8 +105,8 @@ class PostcodeAnywhere_Address_Address
    	    return $this->_addressFields[self::ID];
     }
 
-    /** 
-    * Get the stress address. 
+    /**
+    * Get the stress address.
     * Note. This may be an amalgamation of more detailed fields.
     * @return string street address
     * @author Mark Hodgson
@@ -115,7 +115,7 @@ class PostcodeAnywhere_Address_Address
 	   return $this->_addressFields[self::STREET];
     }
 
-    /** 
+    /**
     * Get the place
     * Note. This may be an amalgamation of more detailed fields.
     * @return string place
@@ -124,10 +124,10 @@ class PostcodeAnywhere_Address_Address
     public function getPlace() {
         return $this->_addressFields[self::PLACE];
     }
- 
-    /** 
+
+    /**
     * Get the Postcode.
-    * 
+    *
     * @return string postcode
     * @author Mark Hodgson
     **/
@@ -135,29 +135,29 @@ class PostcodeAnywhere_Address_Address
         return $this->_addressFields[self::POSTCODE];
     }
 
-    /** 
+    /**
     * Set the Postcode.
-    * 
+    *
     * @params string $postcode
     * @author Mark Hodgson
     **/
     public function setPostcode($postcode) {
         $this->_addressFields[self::POSTCODE] = $postcode;
-    }      
-  
-    /** 
+    }
+
+    /**
     * Set the Address Id.
-    * 
+    *
     * @params string address id
     * @author Mark Hodgson
     **/
     public function setAddressId($addressId) {
         $this->_addressFields[self::ID] = $addressId;
-    }   
+    }
 
-    /** 
+    /**
     * Get the Town.
-    * 
+    *
     * @return string town
     * @author Mark Hodgson
     **/
@@ -165,9 +165,9 @@ class PostcodeAnywhere_Address_Address
         return $this->_addressFields[self::POSTTOWN];
     }
 
-    /** 
+    /**
     * Get the Address line 1.
-    * 
+    *
     * @return string address line 1
     * @author Mark Hodgson
     **/
@@ -175,9 +175,9 @@ class PostcodeAnywhere_Address_Address
         return $this->_addressFields[self::LINE1];
     }
 
-    /** 
+    /**
     * Get the County.
-    * 
+    *
     * @return string county
     * @author Mark Hodgson
     **/
@@ -185,14 +185,14 @@ class PostcodeAnywhere_Address_Address
         return $this->_addressFields[self::COUNTY];
     }
 
-    /** 
+    /**
     * Get the Formatted second address line.
     * Note. This is a combination of Line2-5
     * @return string formatted address line 2
     * @author Mark Hodgson
     **/
     public function getFormattedAddressLine2() {
-	 
+
 	$addressLine2 = null;
 	if (!empty($this->_addressFields[self::LINE2])) {
 		$addressLine2 .= $this->_addressFields[self::LINE2];
@@ -206,8 +206,8 @@ class PostcodeAnywhere_Address_Address
 	if (!empty($this->_addressFields[self::LINE5])) {
 		$addressLine2 .= ', '.$this->_addressFields[self::LINE5];
 	}
-	
+
 	return $addressLine2;
     }
-    
+
 }

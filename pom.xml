@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
+    <properties>
+        <phpmaven.plugin.version>2.0.2</phpmaven.plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <phpunit.version>3.6.10</phpunit.version>
+
+        <zend.version>1.12.1</zend.version>
+    </properties>
+
 	<modelVersion>4.0.0</modelVersion>
-	<prerequisites>
-		<maven>2.0.7</maven>
-	</prerequisites>
 	<artifactId>PostcodeAnywhere</artifactId>
 	<groupId>Lookup</groupId>
 	<packaging>php</packaging>
 	<name>PostcodeAnywhere</name>
-	<version>1.1-SNAPSHOT</version>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<phpmaven.version>1.1-SNAPSHOT</phpmaven.version>
-		<phpunit.version>3.3.9</phpunit.version>
-		<zend.version>1.11.11</zend.version>
- 	</properties>
-	
+	<version>1.2</version>
+
 	<developers>
 		<developer>
 			<id>TimLangley</id>
@@ -24,7 +23,7 @@
 			<timezone>+0</timezone>
 		</developer>
 	</developers>
-    
+
     <distributionManagement>
         <repository>
             <id>canddi-deploy</id>
@@ -44,140 +43,118 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-        <repository>
-            <id>apache.snapshots</id>
-            <name>Maven Snapshot Repository</name>
-            <url>http://people.apache.org/maven-snapshot-repository</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>daily</updatePolicy>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-        </repository>
     </repositories>
-	
+
 	<build>
-		<plugins>
-			<!-- The validation and testing phase -->
-			<plugin>
-				<groupId>org.phpmaven</groupId>
-				<artifactId>maven-php-plugin</artifactId>
-				<extensions>true</extensions>
-				<version>${phpmaven.version}</version>
-				<configuration>
-					<compileArgs>-d auto_prepend_file=${basedir}/registerautoload.php</compileArgs>
-					<ignoreValidate>true</ignoreValidate>
-				</configuration>
-			</plugin>
-			<!-- The actual assembly / install phase -->
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.2-beta-4</version>
-				<dependencies>
-					<dependency>
-						<groupId>org.phpmaven</groupId>
-						<artifactId>maven-php-plugin</artifactId>
-						<version>${phpmaven.version}</version>
-					</dependency>
-				</dependencies>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>attached</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<finalName>${project.artifactId}-${project.version}</finalName>
-					<descriptors>
-						<descriptor>${basedir}/config.xml</descriptor>
-					</descriptors>
-				</configuration>
-			</plugin>
-			<!-- Code Coverage -->
-			<plugin>
-		    	<groupId>org.codehaus.mojo</groupId>
-			    <artifactId>exec-maven-plugin</artifactId>
-			    <version>1.1.1</version>
-			    <executions>
-			        <execution>
-			            <id>reports-dir</id>
-			            <phase>verify</phase>
-			            <goals>
-			                <goal>exec</goal>
-			            </goals>
-			            <configuration>
-			                <executable>mkdir</executable>
-			                <arguments>
-			                    <argument>-p</argument>
-			                    <argument>${project.build.directory}/reports/coverage</argument>
-			                </arguments>
-			            </configuration>
-			        </execution>
-			    </executions>
-			</plugin>
-      <!-- Classmap Generation -->
-      <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.6</version>
-        <executions>
-          <execution>
-            <id>Zend_Postcoder classmap</id>
-            <phase>test</phase>
-            <configuration>
-              <target>
-                <property name="path.inputRaw" value="${project.basedir}/src/main/php/" />
-                <property name="path.classMapGen" value="${project.basedir}/src/site/resources/classmap_generator.php" />
-                <property name="path.outputRaw" value="${project.build.directory}/classes" />
-                <ant antfile="${project.basedir}/src/main/php/build.xml">
-                  <target name="compile"/>
-                </ant>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-		</plugins>
+	   <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh-external</artifactId>
+                <version>1.0-beta-6</version>
+            </extension>
+        </extensions>
+        <plugins>
+            <!-- Classmap Generation -->
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>Zend_Postcoder classmap</id>
+                <phase>test</phase>
+                <configuration>
+                  <target>
+                    <property name="path.inputRaw" value="${project.basedir}/src/main/php/" />
+                    <property name="path.classMapGen" value="${project.basedir}/src/site/resources/classmap_generator.php" />
+                    <property name="path.outputRaw" value="${project.build.directory}/classes" />
+                    <ant antfile="${project.basedir}/src/main/php/build.xml">
+                      <target name="compile"/>
+                    </ant>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+            <plugin>
+                <groupId>org.phpmaven</groupId>
+                <artifactId>maven-php-plugin</artifactId>
+                <version>${phpmaven.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <ignoreValidate>true</ignoreValidate>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.phpmaven</groupId>
+                <artifactId>maven-php-phpunit</artifactId>
+                <version>${phpmaven.plugin.version}</version>
+                <configuration>
+                    <executableConfig>
+                        <additionalPhpParameters>-d auto_prepend_file=${project.basedir}/registerautoload.php</additionalPhpParameters>
+                    </executableConfig>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.phpmaven</groupId>
+                <artifactId>maven-php-phar</artifactId>
+
+                <configuration>
+                    <pharConfig>
+                        <stub>
+echo "***** ${project.artifactId} V${project.version}".PHP_EOL;
+echo "***** starting application...";
+function __autoload($class)
+{
+    include 'phar://me.phar/' . str_replace('_', '/', $class) . '.php';
+}
+try {
+    Phar::mapPhar('me.phar');
+    include 'phar://me.phar/startup.php';
+} catch (PharException $e) {
+    echo $e->getMessage();
+    die('Cannot initialize Phar');
+}
+                        </stub>
+                    </pharConfig>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2-beta-4</version>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attached</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <finalName>${project.artifactId}-${project.version}</finalName>
+                    <descriptors>
+                        <descriptor>${basedir}/config.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
+        </plugins>
 	</build>
-	
-	<dependencies>	
+
+	<dependencies>
 		<dependency>
-			<groupId>org.phpunit</groupId>
-			<artifactId>phpunit5</artifactId>
-			<version>${phpunit.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>Zend</groupId>
-			<artifactId>Zend</artifactId>
-			<version>${zend.version}</version>
-		</dependency>
+            <groupId>de.phpunit</groupId>
+            <artifactId>PHPUnit</artifactId>
+            <version>${phpunit.version}</version>
+            <type>phar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>Zend</groupId>
+            <artifactId>Zend</artifactId>
+            <version>${zend.version}</version>
+        </dependency>
 	</dependencies>
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.phpmaven</groupId>
-				<artifactId>maven-php-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>2.4</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>report-only</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-		</plugins>
-	</reporting>
 </project>
