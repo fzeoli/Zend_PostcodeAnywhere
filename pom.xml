@@ -5,7 +5,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <phpunit.version>3.6.10</phpunit.version>
 
-        <zend.version>1.12.1</zend.version>
+        <zend.version>1.12.3.2</zend.version>
     </properties>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -13,7 +13,7 @@
 	<groupId>Lookup</groupId>
 	<packaging>php</packaging>
 	<name>PostcodeAnywhere</name>
-	<version>1.2</version>
+	<version>1.2.1</version>
 
 	<developers>
 		<developer>
@@ -55,29 +55,29 @@
         </extensions>
         <plugins>
             <!-- Classmap Generation -->
-          <plugin>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.6</version>
-            <executions>
-              <execution>
-                <id>Zend_Postcoder classmap</id>
-                <phase>test</phase>
-                <configuration>
-                  <target>
-                    <property name="path.inputRaw" value="${project.basedir}/src/main/php/" />
-                    <property name="path.classMapGen" value="${project.basedir}/src/site/resources/classmap_generator.php" />
-                    <property name="path.outputRaw" value="${project.build.directory}/classes" />
-                    <ant antfile="${project.basedir}/src/main/php/build.xml">
-                      <target name="compile"/>
-                    </ant>
-                  </target>
-                </configuration>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                  <execution>
+                    <id>Zend_Postcoder classmap</id>
+                    <phase>test</phase>
+                    <configuration>
+                      <target>
+                        <property name="path.inputRaw" value="${project.basedir}/src/main/php/" />
+                        <property name="path.classMapGen" value="${project.basedir}/src/site/resources/classmap_generator.php" />
+                        <property name="path.outputRaw" value="${project.build.directory}/classes" />
+                        <ant antfile="${project.basedir}/src/main/php/build.xml">
+                          <target name="compile"/>
+                        </ant>
+                      </target>
+                    </configuration>
+                    <goals>
+                      <goal>run</goal>
+                    </goals>
+                  </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.phpmaven</groupId>
                 <artifactId>maven-php-plugin</artifactId>
@@ -104,19 +104,19 @@
                 <configuration>
                     <pharConfig>
                         <stub>
-echo "***** ${project.artifactId} V${project.version}".PHP_EOL;
-echo "***** starting application...";
-function __autoload($class)
-{
-    include 'phar://me.phar/' . str_replace('_', '/', $class) . '.php';
-}
-try {
-    Phar::mapPhar('me.phar');
-    include 'phar://me.phar/startup.php';
-} catch (PharException $e) {
-    echo $e->getMessage();
-    die('Cannot initialize Phar');
-}
+                            echo "***** ${project.artifactId} V${project.version}".PHP_EOL;
+                            echo "***** starting application...";
+                            function __autoload($class)
+                            {
+                                include 'phar://me.phar/' . str_replace('_', '/', $class) . '.php';
+                            }
+                            try {
+                                Phar::mapPhar('me.phar');
+                                include 'phar://me.phar/startup.php';
+                            } catch (PharException $e) {
+                                echo $e->getMessage();
+                                die('Cannot initialize Phar');
+                            }
                         </stub>
                     </pharConfig>
                 </configuration>
@@ -155,6 +155,7 @@ try {
             <groupId>Zend</groupId>
             <artifactId>Zend</artifactId>
             <version>${zend.version}</version>
+            <type>phar</type>
         </dependency>
 	</dependencies>
 </project>
